@@ -17,16 +17,9 @@ export function Testimonials({ reviews }: { reviews: Testimonial[] }) {
   const [paused, setPaused] = useState(false);
   if (!reviews.length) return null;
   const hasDemo = reviews.some(review=>review.isDemo);
-  const midpoint = Math.ceil(reviews.length / 2);
-  const rows = [reviews.slice(0, midpoint), reviews.slice(midpoint)];
-  if (!rows[1].length) rows[1] = rows[0];
-
   return <section className={`testimonials-section ${paused?'is-paused':''}`} aria-labelledby="reviews-heading">
     <div className="section-intro"><span className="eyebrow">VOICES & EXPERIENCES</span><h2 id="reviews-heading">{hasDemo?"In their words.":"Real people."}{!hasDemo&&<><br/><em>Real rhythms.</em></>}</h2>{hasDemo && <p className="testimonial-demo-note">Illustrative testimonials. Names, quotes and ratings are fictional.</p>}</div>
     <div className="testimonial-controls"><button onClick={()=>setPaused(!paused)} aria-pressed={paused}>{paused?<Play size={15}/>:<Pause size={15}/>}<span>{paused?'Play stories':'Pause stories'}</span></button></div>
-    <div className="testimonial-rows">{rows.map((row,index)=>{
-      const repeated = Array.from({length:Math.max(1,Math.ceil(6/row.length))},()=>row).flat();
-      return <div className={`testimonial-window ${index===1?'moves-right':'moves-left'}`} key={index}><div className="testimonial-track">{[0,1].map(copy=><div className="testimonial-group" key={copy} aria-hidden={copy===1?true:undefined}>{repeated.map((review,i)=><div key={`${review.id}-${i}`} aria-hidden={i>=row.length?true:undefined}><ReviewCard review={review}/></div>)}</div>)}</div></div>;
-    })}</div>
+    <div className="testimonial-rows"><div className="testimonial-window moves-left"><div className="testimonial-track">{[0,1].map(copy=><div className="testimonial-group" key={copy} aria-hidden={copy===1?true:undefined}>{reviews.map(review=><div key={`${review.id}-${copy}`}><ReviewCard review={review}/></div>)}</div>)}</div></div></div>
   </section>;
 }
