@@ -22,7 +22,7 @@ export function Testimonials({ reviews }: { reviews: Testimonial[] }) {
   if (!rows[1].length) rows[1] = rows[0];
 
   return <section className={`testimonials-section ${paused?'is-paused':''}`} aria-labelledby="reviews-heading">
-    <div className="section-intro"><span className="eyebrow">EVERY RHYTHM HAS A STORY</span><h2 id="reviews-heading">{hasDemo?"Every rhythm.":"Real people."}<br/><em>{hasDemo?"A story to share.":"Real rhythms."}</em></h2>{hasDemo && <p className="testimonial-demo-note">Demo copy only. Names, quotes and ratings are fictional.</p>}</div>
+    <div className="section-intro"><span className="eyebrow">VOICES & EXPERIENCES</span><h2 id="reviews-heading">{hasDemo?"In their words.":"Real people."}{!hasDemo&&<><br/><em>Real rhythms.</em></>}</h2>{hasDemo && <p className="testimonial-demo-note">Illustrative testimonials. Names, quotes and ratings are fictional.</p>}</div>
     <div className="testimonial-controls"><button onClick={()=>setPaused(!paused)} aria-pressed={paused}>{paused?<Play size={15}/>:<Pause size={15}/>}<span>{paused?'Play stories':'Pause stories'}</span></button></div>
     <div className="testimonial-rows">{rows.map((row,index)=>{
       const repeated = Array.from({length:Math.max(1,Math.ceil(6/row.length))},()=>row).flat();

@@ -9,12 +9,12 @@ export type Testimonial = {
 // User-authorized demonstration copy. Replace with approved customer quotes,
 // names and ratings, then remove isDemo from those entries before launch.
 export const testimonials: Testimonial[] = [
-  { id: 'demo-01', name: 'Emma', rating: 5, isDemo: true, quote: 'Two flavours, one simple ritual. I love the idea of nutrition that makes room for my changing routine.' },
-  { id: 'demo-02', name: 'Aisha', rating: 5, isDemo: true, quote: 'The little daily check-in is my favourite part. A moment to pause, notice how I feel and reconnect with myself.' },
-  { id: 'demo-03', name: 'Rachel', rating: 5, isDemo: true, quote: 'Vanilla for one part of my routine, chocolate for another. It feels thoughtful without adding more to my day.' },
-  { id: 'demo-04', name: 'Maya', rating: 5, isDemo: true, quote: 'I appreciate seeing the packets and the app as one connected experience. Everything has a clear place in the routine.' },
-  { id: 'demo-05', name: 'Leah', rating: 5, isDemo: true, quote: 'A shake, a check-in, a little time for me. This is the kind of everyday ritual I can get behind.' },
-  { id: 'demo-06', name: 'Sophie', rating: 5, isDemo: true, quote: 'I like a routine that leaves room for real life. Corra’s approach feels considered, calm and easy to understand.' },
-  { id: 'demo-07', name: 'Nadia', rating: 5, isDemo: true, quote: 'The two-packet idea feels refreshingly clear. Having a little guidance alongside my nutrition makes the experience feel more personal.' },
-  { id: 'demo-08', name: 'Alex', rating: 5, isDemo: true, quote: 'My favourite thing is the simplicity. Two packets, two flavours and one place to keep track of my own rhythm.' },
+  { id: 'demo-01', name: 'Emma', rating: 5, isDemo: true, quote: 'The two-packet idea is easy to understand. I can see where each one fits.' },
+  { id: 'demo-02', name: 'Aisha', rating: 5, isDemo: true, quote: 'I’d never thought to keep a note of my energy alongside my cycle. The check-in makes that feel simple.' },
+  { id: 'demo-03', name: 'Rachel', rating: 5, isDemo: true, quote: 'Vanilla and chocolate. Two flavours I’d actually want to come back to.' },
+  { id: 'demo-04', name: 'Maya', rating: 5, isDemo: true, quote: 'Seeing both formulas side by side helped me understand the difference straight away.' },
+  { id: 'demo-05', name: 'Leah', rating: 5, isDemo: true, quote: 'A quick check-in is something I could fit into my morning.' },
+  { id: 'demo-06', name: 'Sophie', rating: 5, isDemo: true, quote: 'I like that the app puts my cycle dates and notes in the same place.' },
+  { id: 'demo-07', name: 'Nadia', rating: 5, isDemo: true, quote: 'The packet reminder is the part that makes sense to me. One less thing to remember.' },
+  { id: 'demo-08', name: 'Alex', rating: 5, isDemo: true, quote: 'Clear labels, two flavours and no complicated routine to decode.' },
 ];

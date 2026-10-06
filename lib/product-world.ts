@@ -221,10 +221,10 @@ export async function createProductWorld(host:HTMLElement,options:{signal:AbortS
       shadow.material.uniforms.strength.value=.08+pose.height*.08;
     });
     const view=2*(camera.position.z+2.7)*tan;
-    orbit.position.set((mobile?.5:.76)-.5,0,-2.7);
+    orbit.position.set((motion.framing==='gallery'?.5:mobile?.5:.76)-.5,0,-2.7);
     orbit.position.x*=view*camera.aspect;
-    orbit.position.y=(.5-(mobile?.76:.52))*view;
-    orbit.scale.setScalar(view*(mobile?.38:.65)/9.75);
+    orbit.position.y=(.5-(motion.framing==='gallery'?.52:mobile?.76:.52))*view;
+    orbit.scale.setScalar(view*(motion.framing==='gallery'?.63:mobile?.38:.65)/9.75);
     orbit.rotation.set(.40+motion.phone*.15,-.12,motion.orbit);
     renderer.render(scene,camera);
   }

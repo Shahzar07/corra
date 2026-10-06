@@ -21,7 +21,7 @@ function StoryPhone() {
   </div>;
 }
 
-export function ProductExperience({ shop }: {shop:()=>void}) {
+export function ProductExperience() {
   const root=useRef<HTMLDivElement>(null);
   const progress=useRef(0);
   const timelineRef=useRef<gsap.core.Timeline|null>(null);
@@ -128,27 +128,27 @@ export function ProductExperience({ shop }: {shop:()=>void}) {
       <div className="product-stage-word" aria-hidden="true">in sync.</div>
       <ProductScene progress={progress} paused={paused} chapter={active}/>
       <div className="hero-panel hero-copy hero-intro-copy" aria-hidden={active!==0} inert={active!==0}>
-        <span className="eyebrow">TWO PACKETS. ONE CLEARER RITUAL.</span>
+        <span className="eyebrow">PHASE-AWARE PROTEIN / FOLLICULAR + LUTEAL</span>
         <h1 className="hero-title">Less chaos.<br/><em>More in sync.</em></h1>
-        <p>Phase-aware protein, with an app to help you follow your rhythm.</p>
-        <div className="actions"><CTA onClick={shop}>Meet your set</CTA><CTA secondary href="#app">Explore the app</CTA></div>
+        <p>Two protein formulas for your cycle. An app concept to help you know when to switch.</p>
+        <div className="actions"><CTA href="/shop/corra-set">Meet your set</CTA><CTA secondary href="#app">Explore the app</CTA></div>
         <div className="hero-flavours"><span><i className="orange-dot"/>Follicular · Vanilla</span><span><i className="plum-dot"/>Luteal · Chocolate</span></div>
       </div>
       <div className="hero-panel hero-formula-copy follicular-copy" aria-hidden={active!==1} inert={active!==1}>
         <span className="eyebrow"><i className="orange-dot"/>01 / THE FOLLICULAR PACKET</span>
-        <h2>Your next chapter.<br/><em>A fresh start.</em></h2>
-        <p>Vanilla-flavour protein, designed for the Follicular part of your routine.</p>
+        <h2>Follicular.<br/><em>Vanilla.</em></h2>
+        <p>A vanilla formula designed to support your Follicular nutrition.</p>
         <div className="packet-focus-stats"><strong>25g <small>protein</small></strong><span>0g added sugar<br/>20 vitamins &amp; minerals</span></div>
         <span className="packet-flavour-note">VANILLA FLAVOUR · 500G</span>
-        <CTA onClick={shop}>Explore the set</CTA>
+        <CTA href="/shop/follicular">Explore Follicular</CTA>
       </div>
       <div className="hero-panel hero-formula-copy luteal-copy" aria-hidden={active!==2} inert={active!==2}>
         <span className="eyebrow"><i className="plum-dot"/>02 / THE LUTEAL PACKET</span>
-        <h2>A changing rhythm.<br/><em>The same care.</em></h2>
-        <p>Chocolate-flavour protein, designed for the Luteal part of your routine.</p>
+        <h2>Luteal.<br/><em>Chocolate.</em></h2>
+        <p>A chocolate formula designed to support your Luteal nutrition.</p>
         <div className="packet-focus-stats"><strong>30g <small>protein</small></strong><span>0g added sugar<br/>20 vitamins &amp; minerals</span></div>
         <span className="packet-flavour-note">CHOCOLATE FLAVOUR · 500G</span>
-        <CTA onClick={shop}>Explore the set</CTA>
+        <CTA href="/shop/luteal">Explore Luteal</CTA>
       </div>
       <div className="hero-panel hero-app-copy" aria-hidden={active!==3} inert={active!==3}>
         <span className="eyebrow">03 / FROM CHAOS TO CLARITY</span>

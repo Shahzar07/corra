@@ -1,7 +1,7 @@
 /** Shared by the WebGL scene and its artwork fallback. Coordinates are screen
  * fractions, so changing renderer never changes the product composition. */
 export type PacketPose = { x:number; y:number; height:number; depth:number; rx:number; ry:number; rz:number };
-export type ProductMotion = { packets:[PacketPose,PacketPose]; orbit:number; phone:number };
+export type ProductMotion = { packets:[PacketPose,PacketPose]; orbit:number; phone:number; framing?:'gallery' };
 export const STORY_STOPS = [0,.36,.64,.94] as const;
 export const STORY_LABELS = ['The set','Follicular','Luteal','The app'] as const;
 
