@@ -6,7 +6,7 @@ import { sampleProductMotion, type ProductMotion } from '@/lib/product-choreogra
 import type { ProductWorld } from '@/lib/product-world';
 import { Pouch } from './pouch';
 
-export function ProductScene({progress,paused,chapter}:{progress:{current:number};paused:boolean;chapter:number}) {
+export function ProductScene({progress,paused,chapter,gallery}:{progress:{current:number};paused:boolean;chapter:number;gallery?:'corra-set'|'follicular'|'luteal'}) {
   const host=useRef<HTMLDivElement>(null);
   const fallback=useRef<HTMLDivElement>(null);
   const pause=useRef(paused);
@@ -18,6 +18,7 @@ export function ProductScene({progress,paused,chapter}:{progress:{current:number
     const scene=host.current;
     const artwork=fallback.current;
     const stage=scene.closest<HTMLElement>('.hero-experience')!;
+    const sample=()=>{const value=sampleProductMotion(progress.current,stage.clientWidth<900);if(gallery){value.framing='gallery';value.phone=0;value.orbit=gallery==='follicular'?.25:gallery==='luteal'?.8:-.18;value.packets.forEach((pose,index)=>{const duo=gallery==='corra-set';const shown=duo||(gallery==='follicular'?index===0:index===1);pose.x=shown?(duo?(index===0?.35:.68):.5):3;pose.y=duo?(index===0?.46:.54):.49;pose.height=shown?(duo?Math.min(.65,stage.clientWidth/stage.clientHeight*.72):Math.min(.73,stage.clientWidth/stage.clientHeight*1.1)):.001;pose.depth=duo?(index===0?.6:-1.6):.3;pose.rx=-3;pose.ry=index===0?-13:13;pose.rz=duo?(index===0?-9:9):index===0?-5:5})}return value};
     const packets=Array.from(artwork.querySelectorAll<HTMLElement>('.scene-packet'));
     const orbits=Array.from(artwork.querySelectorAll<HTMLElement>('.fallback-orbit'));
     const preference=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -29,7 +30,7 @@ export function ProductScene({progress,paused,chapter}:{progress:{current:number
     let time=0,px=0,py=0,targetX=0,targetY=0;
     let readyAt=0;
     let lastProgress=-1,lastPaused=false;
-    let lastMotion:ProductMotion=sampleProductMotion(progress.current,width<900);
+    let lastMotion:ProductMotion=sample();
     const tick=(_time=0,delta=16.67)=>{
       if(cancelled||!visible||document.hidden)return;
       const reduced=preference.matches;
@@ -41,7 +42,7 @@ export function ProductScene({progress,paused,chapter}:{progress:{current:number
       px+=(targetX-px)*smoothing;py+=(targetY-py)*smoothing;
       if(frozen&&lastPaused===frozen&&lastProgress===progress.current&&Math.abs(px)+Math.abs(py)<.0001)return;
       lastPaused=frozen;lastProgress=progress.current;
-      const motion=sampleProductMotion(progress.current,width<900);
+      const motion=sample();
       const drawFallback=scene.dataset.ready!=='true'||performance.now()-readyAt<700;
       motion.packets.forEach((pose,index)=>{
         // Floating is additive to the authored pose; scrolling never lags behind
@@ -114,9 +115,9 @@ export function ProductScene({progress,paused,chapter}:{progress:{current:number
       document.removeEventListener('visibilitychange',resume);preference.removeEventListener('change',changePreference);
       scene.dataset.ready='false';
     };
-  },[progress]);
+  },[progress,gallery]);
 
-  return <div className="hero-product-scene" role="img" aria-label="Corra Follicular vanilla and Luteal chocolate pouches in a sculptural product display">
+  return <div className="hero-product-scene" data-gallery={gallery} role="img" aria-label={gallery==='follicular'?'Corra Follicular vanilla pouch in a lit 3D product display':gallery==='luteal'?'Corra Luteal chocolate pouch in a lit 3D product display':'Corra Follicular vanilla and Luteal chocolate pouches in a sculptural product display'}>
     <div className="product-webgl" ref={host} data-ready="false"/>
     <div className="hero-pouch-fallback" ref={fallback} aria-hidden="true">
       <div className="fallback-orbit orbit-orange"/><div className="fallback-orbit orbit-plum"/>
