@@ -842,23 +842,6 @@ em { font-style: italic; }
 @media (hover: none) { .shop-card-view { display: none; } }
 
 /* Shop by phase */
-.phase-tiles-section { max-width: 1540px; }
-.phase-tiles { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 16px; }
-.phase-tile { position: relative; display: block; height: clamp(360px, 34vw, 500px); border-radius: 22px; overflow: hidden; isolation: isolate; color: var(--cream); }
-.phase-tile img { object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
-.phase-tile-shade { position: absolute; inset: 0; background: linear-gradient(180deg, #1c0f1500 35%, #1c0f15d0); }
-.phase-tile::after { content: ''; position: absolute; inset: 0; background: var(--tile-colour); mix-blend-mode: multiply; opacity: 0; transition: opacity .5s; }
-.phase-tile-num { position: absolute; top: 20px; left: 22px; z-index: 2; font-size: 11px; letter-spacing: .12em; }
-.phase-tile-arrow { position: absolute; top: 16px; right: 16px; z-index: 2; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; border: 1px solid #fbf6ef66; transition: background .35s, color .35s, transform .45s cubic-bezier(.2,.7,.2,1); }
-.phase-tile-copy { position: absolute; left: 22px; right: 22px; bottom: 22px; z-index: 2; display: flex; flex-direction: column; gap: 6px; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
-.phase-tile-copy small { font-size: 10px; letter-spacing: .13em; opacity: .85; }
-.phase-tile-copy strong { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 2.5vw, 38px); letter-spacing: -.02em; line-height: 1.05; }
-.phase-tile-copy span { font-size: 12px; opacity: .85; }
-.phase-tile:hover img { transform: scale(1.07); }
-.phase-tile:hover::after { opacity: .22; }
-.phase-tile:hover .phase-tile-arrow { background: var(--cream); color: var(--tile-colour); transform: rotate(45deg); }
-.phase-tile:hover .phase-tile-copy { transform: translateY(-6px); }
-.tiles-footnote { margin-top: 14px; font-size: 10px; color: var(--body-muted); }
 
 /* Stats band with count-up figures */
 .stats-band { position: relative; overflow: hidden; background: #2b0d24; color: var(--cream); padding: var(--section-space) var(--page-gutter); }
@@ -949,11 +932,8 @@ em { font-style: italic; }
   .marquee-track { animation: none; }
   .marquee { overflow-x: auto; }
   .shop-card, .explorer-phase img, .explorer-packet-art .pouch { animation: none; }
-  .phase-tile img, .shop-card-photo, .explorer-card { transition: none; }
 }
 @media (max-width: 1100px) {
-  .phase-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .phase-tile { height: 380px; }
   .explorer-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .explorer-phase { grid-column: 1 / -1; min-height: 340px; }
   .stats-inner { grid-template-columns: 1fr; align-items: start; }
@@ -981,10 +961,6 @@ em { font-style: italic; }
   .marquee-sm { font-size: 10px; }
   .collection-tabs button { padding: 9px 12px; font-size: 11px; }
   .collection-tools .text-link { display: none; }
-  .phase-tile { height: 260px; border-radius: 18px; }
-  .phase-tile-copy strong { font-size: 24px; }
-  .phase-tile-copy span { display: none; }
-  .phase-tile-arrow { width: 38px; height: 38px; }
   .phase-tabs { gap: 8px; }
   .phase-tab { padding: 11px 12px; gap: 10px; }
   .phase-tab-icon { width: 32px; height: 32px; }
@@ -1070,7 +1046,6 @@ em { font-style: italic; }
 /* Shop cards: hover visual uses product renders at their native ratio */
 .shop-card-photo.is-render { background: color-mix(in srgb, var(--product-colour) 16%, var(--product-tint)); }
 .shop-card-photo.is-render img { object-fit: contain; padding: 10%; filter: drop-shadow(0 24px 22px #38142533); }
-.phase-tile img.is-product { object-position: 62% 50%; }
 
 /* CTA: split card, photo kept at its own 16:9 ratio */
 .cta-banner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); height: auto; max-width: 1388px; margin: 0 auto var(--section-space); width: calc(100% - var(--page-gutter) * 2); border-radius: 28px; }
@@ -1123,20 +1098,15 @@ em { font-style: italic; }
 .shop-card-photo.is-duo .render-slot { width: 56%; height: 62%; margin: 0 -9%; }
 .shop-card-photo.is-duo .render-slot:first-child { transform: rotate(-7deg) translateY(-4%); z-index: 1; }
 .shop-card-photo.is-duo .render-slot:last-child { transform: rotate(7deg) translateY(5%); }
-.phase-tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.phase-tile { height: auto; aspect-ratio: 4 / 5; }
-.phase-tile.is-render { background: radial-gradient(ellipse at 50% 35%, #8a2d73, #3a0f31 70%); }
-.phase-tile-render { position: absolute; inset: 10% 6% 30%; display: flex; align-items: center; justify-content: center; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
-.phase-tile-render > span { position: relative; width: 58%; height: 100%; margin: 0 -10%; filter: drop-shadow(0 24px 22px #0000004d); transition: transform .8s cubic-bezier(.2,.7,.2,1); }
-.phase-tile-render img { object-fit: contain; }
-.phase-tile-render > span:first-child { transform: rotate(-8deg); z-index: 1; }
-.phase-tile-render > span:last-child { transform: rotate(8deg) translateY(6%); }
-.phase-tile.is-render:hover .phase-tile-render > span:first-child { transform: rotate(-12deg) translateX(-6%) translateY(-3%); }
-.phase-tile.is-render:hover .phase-tile-render > span:last-child { transform: rotate(12deg) translateX(6%) translateY(4%); }
-@media (max-width: 1100px) { .phase-tile { height: auto; } }
-@media (max-width: 520px) { .phase-tile { height: auto; } }
 @media (max-width: 800px) { .footer-landscape { aspect-ratio: 16 / 9; } }
 .faq-items [data-slot="accordion-trigger"] { font-family: var(--serif); font-size: clamp(18px, 1.45vw, 22px); font-weight: 400; padding-block: 20px; text-decoration: none; }
 .faq-item { transition: background .3s, box-shadow .3s; }
 .faq-item:hover { box-shadow: 0 18px 36px -30px #3a0f3166; }
 .faq-items [data-slot="accordion-content"] { font-size: 14px; line-height: 1.75; }
+/* Size the CTA and footer photos from their width, not a stretched height, so they never overflow their box. */
+.cta-banner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); align-items: center; }
+.cta-banner .cta-photo { inset: auto; width: 100%; height: auto; align-self: stretch; min-height: 0; }
+.cta-banner .cta-photo img { object-fit: cover; }
+@media (min-width: 1101px) { .cta-banner .cta-photo { align-self: center; } }
+@media (max-width: 1100px) { .cta-banner { grid-template-columns: 1fr; } .cta-banner .cta-photo { grid-column: 1; grid-row: 1; align-self: auto; } .cta-banner .cta-copy { grid-column: 1; grid-row: 2; } }
+@media (max-width: 800px) { .footer-landscape { height: auto; } }
