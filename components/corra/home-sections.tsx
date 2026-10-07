@@ -59,38 +59,19 @@ export function ShopCollection(){
   </section>;
 }
 
-const tiles=[
-  {href:'/shop/follicular',img:'portrait-follicular',kicker:'DAYS 6–13*',title:'Follicular',sub:'Vanilla · 25g protein',colour:'#F95006'},
-  {href:'/shop/luteal',img:'portrait-luteal',kicker:'DAYS 17–28*',title:'Luteal',sub:'Chocolate · 30g protein',colour:'#6B1D57'},
-  {href:'/shop/corra-set',img:'',kicker:'BOTH PHASES',title:'The Corra set',sub:'Both pouches, together',colour:'#34282d'},
-  {href:'/#phase',img:'portrait-ovulatory',kicker:'NOT SURE?',title:'Find your phase',sub:'Try the interactive guide',colour:'#9BB58E'},
-];
-export function ShopByPhase(){
-  return <section className="section phase-tiles-section" aria-labelledby="tiles-heading">
-    <div className="section-intro collection-head"><div><span className="eyebrow">SHOP BY PHASE</span><h2 id="tiles-heading">Start with <em>where you are.</em></h2></div><p>Each pouch is made for a part of your cycle. Pick your phase, or take both with the set.</p></div>
-    <div className="phase-tiles">{tiles.map((t,i)=><Link prefetch={false} key={t.title} href={t.href} className={`phase-tile ${t.img?'':'is-render'}`} style={{'--tile-colour':t.colour} as React.CSSProperties}>
-      {t.img?<Image src={`/images/${t.img}.webp`} alt="" fill quality={90} sizes="(max-width: 800px) 50vw, 25vw"/>:<span className="phase-tile-render" aria-hidden="true"><span><Image src="/images/pouch-follicular-v2.png" alt="" fill quality={90} sizes="20vw"/></span><span><Image src="/images/pouch-luteal-v2.png" alt="" fill quality={90} sizes="20vw"/></span></span>}
-      <span className="phase-tile-shade"/>
-      <span className="phase-tile-num">0{i+1}</span>
-      <span className="phase-tile-copy"><small>{t.kicker}</small><strong>{t.title}</strong><span>{t.sub}</span></span>
-      <span className="phase-tile-arrow"><ArrowUpRight size={20}/></span>
-    </Link>)}</div>
-    <p className="tiles-footnote">*Illustrative 28-day cycle. Your own timing may differ.</p>
-  </section>;
-}
-
 function CountUp({to,suffix='',duration=1400}:{to:number;suffix?:string;duration?:number}){
   const ref=useRef<HTMLSpanElement>(null);
   useEffect(()=>{
     const el=ref.current;if(!el)return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=`${to}${suffix}`;return}
-    el.textContent=`0${suffix}`;let frame=0;
+    // The real value stays visible until the figure scrolls into view; only then does it count up from 0.
+    let frame=0;
     const observer=new IntersectionObserver(([entry])=>{
       if(!entry.isIntersecting)return;observer.disconnect();
-      const start=performance.now();
+      el.textContent=`0${suffix}`;const start=performance.now();
       const step=(now:number)=>{const t=Math.min((now-start)/duration,1);const eased=1-Math.pow(1-t,3);el.textContent=`${Math.round(to*eased)}${suffix}`;if(t<1)frame=requestAnimationFrame(step)};
       frame=requestAnimationFrame(step);
-    },{threshold:.6});
+    },{threshold:.25});
     observer.observe(el);return()=>{observer.disconnect();cancelAnimationFrame(frame)};
   },[to,suffix,duration]);
   return <span ref={ref}>{to}{suffix}</span>;

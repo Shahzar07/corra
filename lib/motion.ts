@@ -15,7 +15,7 @@ export function setupMotion(root:HTMLElement){
   pageScroller=lenis;
   lenis.on('scroll',ScrollTrigger.update);ticker=(t)=>lenis?.raf(t*1000);gsap.ticker.add(ticker);
   gsap.from(root.querySelector('.navbar'),{y:-12,opacity:0,duration:.7});
-  root.querySelectorAll<HTMLElement>('.section-intro,.bento-card,.shop-card,.phase-tile,.phase-tab,.explorer-card,.stat,.faq,.contact-copy,.contact-form').forEach(el=>gsap.from(el,{y:desktop?24:10,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 93%',once:true}}));
+  root.querySelectorAll<HTMLElement>('.section-intro,.bento-card,.shop-card,.phase-tab,.explorer-card,.stat,.faq,.contact-copy,.contact-form').forEach(el=>gsap.from(el,{y:desktop?24:10,opacity:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 93%',once:true}}));
   root.querySelectorAll<SVGPathElement>('.draw-line').forEach(path=>{const length=path.getTotalLength();gsap.fromTo(path,{strokeDasharray:length,strokeDashoffset:length},{strokeDashoffset:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:path.closest('.bento-card'),start:'top 85%',once:true}})});
   if(desktop){root.querySelectorAll<HTMLElement>('.shake-photo,.lifestyle-photo,.cta-photo').forEach(el=>{const img=el.querySelector('img');if(img)gsap.fromTo(img,{scale:1.08,yPercent:-2},{scale:1.08,yPercent:2,ease:'none',scrollTrigger:{trigger:el.parentElement,start:'top bottom',end:'bottom top',scrub:.7}})});}
   gsap.from(root.querySelector('.cta-banner'),{scale:.98,duration:.9,scrollTrigger:{trigger:root.querySelector('.cta-banner'),start:'top 95%',once:true}});

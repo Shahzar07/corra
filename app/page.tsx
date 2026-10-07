@@ -11,7 +11,7 @@ import { testimonials } from '@/lib/testimonials';
 import { CTA } from '@/components/corra/cta';
 import { ProductExperience } from '@/components/corra/product-experience';
 import { Marquee } from '@/components/corra/marquee';
-import { ShopCollection, ShopByPhase, WhyCorra } from '@/components/corra/home-sections';
+import { ShopCollection, WhyCorra } from '@/components/corra/home-sections';
 import { RhythmExplorer } from '@/components/corra/rhythm-explorer';
 
 const faqs=[
@@ -39,7 +39,7 @@ export default function Home(){
 
  const openShop=()=>router.push('/shop');
 
- return <div ref={root}><a href="#shop-collection" className="skip-link">Skip to content</a><Navbar/><main><ProductExperience/><Marquee tone="orange" seconds={38} items={['Phase-aware protein','Follicular · Vanilla','Luteal · Chocolate','0g added sugar','20 vitamins & minerals','Free UK delivery over £50']}/><ShopCollection/><ShopByPhase/><WhyCorra/><RhythmExplorer day={day} setDay={setDay} symptom={symptom} setSymptom={setSymptom}/><Marquee tone="plum" seconds={44} items={['Voices & experiences','Two flavours','One simple routine','Made for your cycle']}/><Testimonials reviews={testimonials}/><FAQAccordion contact={()=>router.push('/contact')}/><section className="cta-banner" aria-labelledby="cta-heading"><div className="cta-copy"><span className="eyebrow">YOUR RHYTHM STARTS HERE</span><h2 id="cta-heading">Ready to feel<br/><em>in sync?</em></h2><p>Start with the two packets. Get to know your cycle.</p><div className="actions"><CTA onClick={openShop}>Shop the set</CTA><CTA secondary href="#phase">Find your phase</CTA></div></div><div className="cta-photo"><Photo src="friends" alt="Three friends laughing together after a workout"/></div></section></main><Footer/>
+ return <div ref={root}><a href="#shop-collection" className="skip-link">Skip to content</a><Navbar/><main><ProductExperience/><Marquee tone="orange" seconds={38} items={['Phase-aware protein','Follicular · Vanilla','Luteal · Chocolate','0g added sugar','20 vitamins & minerals','Free UK delivery over £50']}/><ShopCollection/><WhyCorra/><RhythmExplorer day={day} setDay={setDay} symptom={symptom} setSymptom={setSymptom}/><Marquee tone="plum" seconds={44} items={['Voices & experiences','Two flavours','One simple routine','Made for your cycle']}/><Testimonials reviews={testimonials}/><FAQAccordion contact={()=>router.push('/contact')}/><section className="cta-banner" aria-labelledby="cta-heading"><div className="cta-copy"><span className="eyebrow">YOUR RHYTHM STARTS HERE</span><h2 id="cta-heading">Ready to feel<br/><em>in sync?</em></h2><p>Start with the two packets. Get to know your cycle.</p><div className="actions"><CTA onClick={openShop}>Shop the set</CTA><CTA secondary href="#phase">Find your phase</CTA></div></div><div className="cta-photo"><Photo src="friends" alt="Three friends laughing together after a workout"/></div></section></main><Footer/>
 
  </div>
 }
